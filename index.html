@@ -591,7 +591,7 @@ function openU(i,push){
   applyZoom();
   rbody.scrollTop=0;
   ST.last=i; save(); showResume();
-  if(push){try{history.pushState({u:i},"","#"+encodeURIComponent(u.name))}catch(e){}}
+  if(push){try{history.pushState({u:i},"")}catch(e){}}
 }
 function short(n){return n.replace("대학교","대").replace("여자대","여대")}
 function closeU(){rd.classList.remove("on");document.body.style.overflow=""}
@@ -611,7 +611,9 @@ $("zb").addEventListener("click",function(){zi=(zi+1)%Z.length;$("zb").textConte
 $("rstar").addEventListener("click",function(){
   var n=U[cur].name; if(ST.fav[n])delete ST.fav[n]; else ST.fav[n]=1; save(); paintStar(); draw();
 });
-$("back").addEventListener("click",function(){history.length>1?history.back():closeU()});
+$("back").addEventListener("click",function(){
+  if(history.state&&history.state.u!=null){history.back()}else{closeU()}
+});
 $("top").addEventListener("click",function(){rbody.scrollTo({top:0,behavior:"smooth"})});
 $("prev").addEventListener("click",function(){if(cur>0)openU(cur-1,true)});
 $("next").addEventListener("click",function(){if(cur<U.length-1)openU(cur+1,true)});
@@ -631,7 +633,11 @@ rbody.addEventListener("scroll",function(){
   }
 },{passive:true});
 window.addEventListener("popstate",function(e){
-  if(e.state&&e.state.u!=null)openU(e.state.u,false); else closeU();
+  if(e.state&&e.state.u!=null){
+    if(e.state.u!==cur) openU(e.state.u,false);   /* 보던 대학으로 되돌아감 */
+  }else{
+    closeU();                                     /* 목록으로 되돌아감 */
+  }
 });
 document.addEventListener("keydown",function(e){
   if(!rd.classList.contains("on"))return;
@@ -643,9 +649,11 @@ document.addEventListener("keydown",function(e){
 /* ── 시작 ── */
 draw(); showResume();
 (function(){
-  var h=decodeURIComponent((location.hash||"").slice(1));
-  if(!h)return;
-  for(var i=0;i<U.length;i++)if(U[i].name===h){openU(i,false);break}
+  /* 링크를 처음 누르면 언제나 목록(메인)에서 시작합니다.
+     예전 주소에 남아 있던 #대학이름 은 지웁니다. */
+  try{
+    history.replaceState(null,"",location.pathname+location.search);
+  }catch(e){}
 })();
 </script>
 </body>
