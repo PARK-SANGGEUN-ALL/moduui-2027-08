@@ -141,6 +141,21 @@ h1{
   vertical-align:2px;
 }
 .srcnote b{display:block;font-size:14px;font-weight:700;color:var(--navy);margin:6px 0 2px}
+.dlbox{
+  display:flex;align-items:center;gap:12px;margin:10px 0 2px;
+  padding:14px 15px;background:var(--card);border:1px solid var(--rule);
+  border-radius:3px;text-decoration:none;color:inherit;
+  transition:border-color .14s;
+}
+.dlbox:active{background:var(--line-soft,#f1f0ec)}
+@media (hover:hover){.dlbox:hover{border-color:var(--navy)}}
+.dlbox .ico{
+  flex:none;display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:3px;background:var(--navy);color:#fff;
+}
+.dlbox .tx{flex:1;min-width:0;font-size:12px;color:var(--ink-3);line-height:1.5}
+.dlbox .tx b{display:block;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.dlbox .ar{flex:none;color:var(--ink-3);line-height:0}
 .sec{padding-top:2px}
 .gh{
   position:sticky;top:105px;z-index:10;background:var(--paper);
@@ -280,6 +295,7 @@ footer{margin-top:46px;padding:26px 0 calc(46px + var(--safe-b));border-top:2px 
   background:var(--card);border-top:1px solid var(--rule);text-align:center;
 }
 .rsrc b{color:var(--navy);font-weight:700}
+.rsrc a{color:var(--celadon);font-weight:700;text-decoration:none;white-space:nowrap}
 .rnav{
   position:absolute;left:0;right:0;bottom:0;display:flex;gap:1px;
   background:var(--rule);border-top:1px solid var(--rule);
@@ -338,13 +354,27 @@ footer{margin-top:46px;padding:26px 0 calc(46px + var(--safe-b));border-top:2px 
     2027대입 수시 대학별 분석Ⅰ(4년제 대학)
   </div>
 
+  <a class="dlbox" href="https://www.jinhak.or.kr/subList/20000000252" target="_blank" rel="noopener">
+    <span class="ico" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+    </span>
+    <span class="tx">
+      <b>원문 자료집 전체 받기</b>
+      서울진로진학정보센터 · 고3 수시 자료 &gt; 대학별 분석/전략
+    </span>
+    <span class="ar" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </span>
+  </a>
+
   <div class="sec" id="toc"></div>
 
   <footer><div class="colo">
     <h2>출처</h2>
     <p class="srcline"><b>서울특별시교육청 교육연구정보원 쎈진학<br>2027대입 수시 대학별 분석Ⅰ(4년제 대학)</b></p>
     <p>2026 진학지도 자료집 06 (서교연 2026-28) · 2026. 8. 22.<br>
-       공공누리 제2유형(출처표시 · 상업적 이용금지) · 비영리 교육 목적</p>
+       공공누리 제2유형(출처표시 · 상업적 이용금지) · 비영리 교육 목적<br>
+       <a href="https://www.jinhak.or.kr/subList/20000000252" target="_blank" rel="noopener" style="color:var(--celadon);font-weight:700">서울진로진학정보센터에서 원문 자료집 받기 ↗</a></p>
     <h2>확인해 주세요</h2>
     <p class="warn">
       이 앱은 자료집의 <b>「주요 전형 분석 및 지원 전략」</b> 부분만 담았습니다.
@@ -374,7 +404,7 @@ footer{margin-top:46px;padding:26px 0 calc(46px + var(--safe-b));border-top:2px 
   </div>
   <div class="strip" id="strip"></div>
   <div class="rbody" id="rbody"></div>
-  <div class="rsrc">출처 <b>서울특별시교육청 교육연구정보원 쎈진학</b> 2027대입 수시 대학별 분석Ⅰ(4년제 대학)</div>
+  <div class="rsrc">출처 <b>서울특별시교육청 교육연구정보원 쎈진학</b> 2027대입 수시 대학별 분석Ⅰ(4년제 대학) <a href="https://www.jinhak.or.kr/subList/20000000252" target="_blank" rel="noopener">원문 받기 ↗</a></div>
   <div class="rnav">
     <button id="prev">◀ 이전 대학</button>
     <button class="mid" id="top">맨 위로</button>
@@ -387,7 +417,7 @@ footer{margin-top:46px;padding:26px 0 calc(46px + var(--safe-b));border-top:2px 
    모두의 2027 수시 대학별 분석
    지면 이미지는 p/001.webp … p/615.webp 에 들어 있습니다.
    ───────────────────────────────────────────────────────────── */
-var LAST=615, IW=1900, IH=2483;
+var LAST=615, IW=1800, IH=2352;
 
 var DATA=[
 ["가톨릭대학교",9,18,12,0],["강서대학교",19,22,21,0],["건국대학교",23,34,26,0],
